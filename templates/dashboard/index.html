@@ -1,0 +1,68 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+      <div class="card ">
+        <div class="card-header p-3 pt-2 bg-transparent">
+          <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize ">Jumlah User</p>
+            <h4 class="mb-0 ">{{total_mahasiswa}}</h4>
+          </div>
+        </div>
+        <hr class="horizontal my-0 dark">
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+      <div class="card ">
+        <div class="card-header p-3 pt-2 bg-transparent">
+          <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person_add_alt</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize ">Jumlah Kategori</p>
+            <h4 class="mb-0 ">{{total_pendaftar}}</h4>
+          </div>
+        </div>
+        <hr class="horizontal my-0 dark">
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+      <div class="card  mb-2">
+        <div class="card-header p-3 pt-2 bg-transparent">
+          <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">how_to_reg</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize ">Jumlah Artikel</p>
+            {% if perhitungan_selesai %}
+            <h4 class="mb-0 ">{{total_lolos}}</h4>
+            {% else %}
+            <p class="mb-1 mt-1 text-md fw-bolder text-dark">Belum dihitung</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+      <div class="card  mb-2">
+        <div class="card-header p-3 pt-2 bg-transparent">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person_off</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize ">Jumlah Ditolak</p>
+            {% if perhitungan_selesai %}
+            <h4 class="mb-0 ">{{total_ditolak}}</h4>
+            {% else %}
+            <p class="mb-1 mt-1 text-md fw-bolder text-dark">Belum dihitung</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}

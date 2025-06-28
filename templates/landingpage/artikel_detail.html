@@ -1,0 +1,67 @@
+{% extends "landingpage/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <!-- START Blogs w/ 3 images & quote & text -->
+    <section class="py-5 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 ms-auto me-auto">
+            <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm">{{kategori.nama}}</h6>
+            <img class="mt-3 mb-3" src="{{artikels.gambar.url}}" style="max-width:720px" />
+            <h3 class="title mb-4" style="text-align: justify;">{{artikels.judul}}</h3>
+            <p class="text-dark" style="text-align: justify;">
+              {{artikels.konten | safe}}
+            </p>
+            <p class="text-dark" style="font-style:italic;">
+              {{artikels.created_at}} — {{artikels.created_by}}
+            </p>
+          </div>
+        </div>
+
+    <section class="py-7">
+      <div class="container">
+        <div class="row">
+          <div class="col-9 text-center mx-auto">
+            <h3 class="mb-5">Lihat Artikel Lainnya</h3>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for a in artikel_lainnya %}
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-1">
+                    <a href="javascript:;" class="d-block blur-shadow-image">
+                      <img src="{{ a.gambar.url }}" class="img-fluid border-radius-md" alt="anastasia" loading="lazy">
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <span class="text-gradient text-primary text-uppercase text-xs font-weight-bold">{{ a.kategori }}</span>
+                    <a href="{% url 'artikel_detail' a.id %}" class="card-title mt-3 h5 d-block text-dark">
+                      {{ a.judul }}
+                    </a>
+                    <p class="card-description mb-4" style="text-align: justify;">
+                      {{ a.konten|truncatechars:200|safe }}
+                    </p>
+                    <div class="author align-items-center">
+                      <img src="{% static 'landingpage/assets/img/team-2.jpg' %}" alt="..." class="avatar shadow" loading="lazy">
+                      <div class="name ps-2">
+                        <span>{{ a.created_by }}</span>
+                        <div class="stats">
+                          <small>Diposting pada {{ a.created_at }}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+      </div>
+
+      </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock content %}
