@@ -18,7 +18,6 @@ from artikels.views import(
     admin_management_user_edit,
     
 )
-
 urlpatterns = [
     ############################## fungsi user biasa ##############################
     path('artikel/list', artikel_list, name='artikel_list'),

@@ -26,12 +26,14 @@ from mysite.authentication import *
 
 urlpatterns = [
     path('', home, name='home'),
+    path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('artikels/<int:id>/', artikel_detail, name='artikel_detail'),
     path('dashboard', dashboard, name='dashboard'),
     path('dashboard/artikel-list', artikel_list, name='artikel_list'),
 
     path('dashboard/', include("artikels.urls")),
+    path('api/', include("artikels.urls_api")),
 
     ######## Authentication ########
     path('auth-login', login, name='login'),
