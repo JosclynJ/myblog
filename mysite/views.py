@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from artikels.models import ArtikelBlog, Kategori
+from django.contrib.auth.models import User, Group
 
 def home(request):
     template_name = "landingpage/index.html"
@@ -32,9 +33,14 @@ def dashboard(request):
     if not request.user.is_authenticated:
         return redirect('/auth-login')
     template_name = "dashboard/index.html"
+    artikel = ArtikelBlog.objects.count()
+    kategori = Kategori.objects.count()
+    users = User.objects.count()
     
     context = {
-        "title": "Selamat datang"
+        "artikel": artikel,
+        "kategori": kategori,
+        "users": users
     }
     
     return render(request, template_name, context)

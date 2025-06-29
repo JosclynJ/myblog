@@ -231,13 +231,11 @@ def admin_management_user_list(request):
 @user_passes_test(in_operator, login_url='/')
 def admin_management_user_edit(request, user_id):
     template_name = "dashboard/admin/user_edit.html"
-    user = get_object_or_404(User, pk=user_id)
+    users = get_object_or_404(User, pk=user_id)
     all_groups = Group.objects.all()
     group_user = []
-    for group in user.groups.all():
+    for group in users.groups.all():
         group_user.append(group.name)
-    print(user.groups.all())
-    
 
     if request.method == 'POST':
         first_name = request.POST.get("first_name")
@@ -250,20 +248,20 @@ def admin_management_user_edit(request, user_id):
         else:
             is_staff = True
             
-        user.first_name = first_name
-        user.last_name = last_name
-        user.is_staff = is_staff
-        user.groups.set(Group.objects.filter(id__in=groups_checked))
-        user.save()
+        users.first_name = first_name
+        users.last_name = last_name
+        users.is_staff = is_staff
+        users.groups.set(Group.objects.filter(id__in=groups_checked))
+        users.save()
         
-        messages.success(request, f"Berhasil update user {user.username}")
+        messages.success(request, f"Berhasil update user {users.username}")
         return redirect(admin_management_user_list)
     
     else:
-        forms = UserEditForm(instance=user)
+        forms = UserEditForm(instance=users)
             
     context = {
-        "user": user,
+        "users": users,
         "all_groups": all_groups,
         "group_user": group_user
     }

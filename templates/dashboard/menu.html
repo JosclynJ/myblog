@@ -32,7 +32,7 @@
           <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">pages</h6>
         </li>
         <li class="nav-item">
-          <a href="#pagesExamples" class="nav-link text-white " aria-controls="pagesExamples" role="button" aria-expanded="false">
+          <a href="{% url 'dashboard' %}" class="nav-link text-white" aria-controls="pagesExamples" role="button" aria-expanded="false">
             <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">dashboard</i>
             <span class="nav-link-text ms-2 ps-1">Dashboard</span>
           </a>

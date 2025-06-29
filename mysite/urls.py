@@ -30,9 +30,9 @@ urlpatterns = [
     path('artikels/<int:id>/', artikel_detail, name='artikel_detail'),
     path('dashboard', dashboard, name='dashboard'),
     path('dashboard/artikel-list', artikel_list, name='artikel_list'),
-    
+
     path('dashboard/', include("artikels.urls")),
-    
+
     ######## Authentication ########
     path('auth-login', login, name='login'),
     path('auth-logout', logout, name='logout'),
@@ -40,9 +40,14 @@ urlpatterns = [
 ]
 
 ############### Media ###############
+# Menambahkan rute untuk file statis (hanya saat DEBUG=True)
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Menambahkan rute untuk file media
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Menambahkan rute untuk CKEditor
 urlpatterns += [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

@@ -14,17 +14,17 @@
       <form method="POST">
         {% csrf_token %}
         <div class="input-group input-group-dynamic">
-          <input type="text" value="{{user.username}}" class="form-control" disabled>
+          <input type="text" value="{{users.username}}" class="form-control" disabled>
         </div>
         <div class="input-group input-group-dynamic">
-          <input type="text" name="first_name" value="{{user.first_name}}" class="form-control" placeholder="Masukkan nama depan">
+          <input type="text" name="first_name" value="{{users.first_name}}" class="form-control" placeholder="Masukkan nama depan">
         </div>
         <div class="input-group input-group-dynamic">
-          <input type="text" name="last_name" value="{{user.last_name}}" class="form-control" placeholder="Masukkan nama belakang">
+          <input type="text" name="last_name" value="{{users.last_name}}" class="form-control" placeholder="Masukkan nama belakang">
         </div>
         <div class="input-group input-group-dynamic">
           Is staff? &nbsp; <input name="is_staff" type="checkbox"
-          {% if user.is_staff %}
+          {% if users.is_staff %}
             checked
           {% endif %}
           />
